@@ -33,11 +33,12 @@ function App() {
       </div>
       <div className="card">
         <button
-          onClick={() =>
+          onClick={() => {
+            if (count === 10) return;
             setCount((count) => {
               return count + 1;
-            })
-          }
+            });
+          }}
         >
           count is {count}
         </button>
