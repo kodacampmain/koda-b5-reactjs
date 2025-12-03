@@ -5,8 +5,8 @@ import ShowTodoList from "../components/ShowTodoList";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
-  const [counter, setCounter] = useState(0);
-  //   function a() {}
+  const [, setCounter] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     document.title = "My Judul";
   }, []);
@@ -27,23 +27,31 @@ function TodoList() {
     //     setTodos(newTodos);
     //   })
     //   .catch((err) => console.error(err));
-    (async () => {
-      const url = "https://jsonplaceholder.typicode.com/todos";
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(`${response.status}: ${response.statusText}`);
-        const data = await response.json();
-        const newTodos = data.slice(0, 7).map((item) => {
-          return {
-            title: `Todo ${item.id}`,
-            content: item.title,
-          };
-        });
-        setTodos(newTodos);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+    setIsLoading(true);
+    setTimeout(
+      () =>
+        (async () => {
+          const url = "https://jsonplaceholder.typicode.com/todos";
+          try {
+            // aktifkan loading state
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`${response.status}: ${response.statusText}`);
+            const data = await response.json();
+            const newTodos = data.slice(0, 7).map((item) => {
+              return {
+                title: `Todo ${item.id}`,
+                content: item.title,
+              };
+            });
+            // non-aktifkan loading state
+            setIsLoading(false);
+            setTodos(newTodos);
+          } catch (error) {
+            console.error(error);
+          }
+        })(),
+      20000
+    );
 
     // return () => {
     //   removeEventListener();
@@ -53,12 +61,12 @@ function TodoList() {
     //   removeEventListener();
     // };
   }, []);
-  useEffect(() => {
-    console.log(counter);
-  }, [counter]);
-  useEffect(() => {
-    console.log("Todo Berhasil Disubmit");
-  }, [todos]);
+  // useEffect(() => {
+  //   console.log(counter);
+  // }, [counter]);
+  // useEffect(() => {
+  //   console.log("Todo Berhasil Disubmit");
+  // }, [todos]);
   const inc = () => setCounter((counter) => counter + 1);
   return (
     <>
@@ -69,7 +77,7 @@ function TodoList() {
         </button>
       </header>
       <main className="flex min-h-[85vh]">
-        <ShowTodoList todos={todos} />
+        <ShowTodoList todos={todos} isLoading={isLoading} />
         <AddTodoList changeTodos={setTodos} />
       </main>
     </>
