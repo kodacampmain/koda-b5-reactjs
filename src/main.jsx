@@ -1,12 +1,24 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router";
+
 // import "./index.css";
-import App from "./pages/App";
-import TodoList from "./pages/TodoList";
+// import App from "./pages/App";
+// import TodoList from "./pages/TodoList";
+// import NotFound from "./pages/NotFound";
+import Router from "./Router";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {/* <App /> */}
-    <TodoList />
+    <BrowserRouter>
+      {/* <App /> */}
+      {/* <TodoList /> */}
+      <Router />
+      {/* <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/todolist" element={<TodoList />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes> */}
+    </BrowserRouter>
   </StrictMode>
 );

@@ -8,28 +8,24 @@ import Heading from "../components/Heading";
 function App() {
   const [count, setCount] = useState(0);
   // [state, setState]
-  const helloName = (name) => {
-    console.log(`Hello ${name}`);
-  };
-  const noName = () => {
-    console.log("gak ada nama oi");
-  };
+  // const helloName = (name) => {
+  //   console.log(`Hello ${name}`);
+  // };
+  // const noName = () => {
+  //   console.log("gak ada nama oi");
+  // };
 
   return (
     <>
-      <Heading name={"Wibi"} batch={1} func={helloName} />
-      <Heading batch={2} func={helloName} onError={noName} />
-      <Heading name={"Aska"} batch={3} func={helloName} />
-      <Heading name={"Rahman"} batch={4} func={helloName} />
-      <Heading name={"Ari"} batch={5} func={helloName} />
+      <Heading title={"Wibi"} />
       <h1>Vite + React</h1>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {/* <a href="https://vite.dev" target="_blank"> */}
+        <img src={viteLogo} className="logo" alt="Vite logo" />
+        {/* </a> */}
+        {/* <a href="https://react.dev" target="_blank"> */}
+        <img src={reactLogo} className="logo react" alt="React logo" />
+        {/* </a> */}
       </div>
       <div className="card">
         <button

@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 
 import AddTodoList from "../components/AddTodoList";
 import ShowTodoList from "../components/ShowTodoList";
+import Heading from "../components/Heading";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
-  const [, setCounter] = useState(0);
+  // const [, setCounter] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     document.title = "My Judul";
@@ -50,7 +51,7 @@ function TodoList() {
             console.error(error);
           }
         })(),
-      20000
+      2000
     );
 
     // return () => {
@@ -67,15 +68,10 @@ function TodoList() {
   // useEffect(() => {
   //   console.log("Todo Berhasil Disubmit");
   // }, [todos]);
-  const inc = () => setCounter((counter) => counter + 1);
+  // const inc = () => setCounter((counter) => counter + 1);
   return (
     <>
-      <header className="p-5 h-[15vh] bg-amber-200 text-2xl font-bold select-none flex justify-between">
-        <p>Todo App</p>
-        <button className="cursor-pointer" onClick={inc}>
-          Increment
-        </button>
-      </header>
+      <Heading title={"Todo App"} />
       <main className="flex min-h-[85vh]">
         <ShowTodoList todos={todos} isLoading={isLoading} />
         <AddTodoList changeTodos={setTodos} />
