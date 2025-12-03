@@ -11,14 +11,7 @@ import Router from "./Router";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-      {/* <App /> */}
-      {/* <TodoList /> */}
       <Router />
-      {/* <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/todolist" element={<TodoList />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes> */}
     </BrowserRouter>
   </StrictMode>
 );

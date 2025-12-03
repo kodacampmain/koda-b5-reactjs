@@ -1,6 +1,13 @@
 import { Link } from "react-router";
+
+/**
+ * Header Component
+ * @param {Object} props
+ * @param {string} props.title The title of the Header Component
+ * @returns {JSX.Element}
+ */
 function Heading({ title }) {
-  //   const { name, batch, func } = props;
+  // const { title } = props;
   // if (!name) {
   //   onError();
   //   return (
@@ -21,6 +28,11 @@ function Heading({ title }) {
             </li>
             <li>
               <Link to={"/todolist"}>TodoList</Link>
+            </li>
+            <li>
+              <a href="http://linkedin.com" target="_blank" rel="noopener noreferrer">
+                Linkedin
+              </a>
             </li>
           </ul>
         </nav>

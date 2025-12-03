@@ -1,3 +1,15 @@
+/**
+ * Todo Object
+ * @typedef {Object} todo
+ * @property {string} todo.title
+ * @property {string} todo.content
+ */
+/**
+ * Component to add new todolist
+ * @param {Object} props
+ * @param {import("react").Dispatch<import("react").SetStateAction<todo[]>>} props.changeTodos
+ * @returns {JSX.Element}
+ */
 function AddTodoList(props) {
   const { changeTodos } = props;
   const submitHandler = (event) => {

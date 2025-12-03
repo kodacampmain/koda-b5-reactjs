@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <Heading title={"Wibi"} />
+      <Heading title="Wibi" />
       <h1>Vite + React</h1>
       <div>
         {/* <a href="https://vite.dev" target="_blank"> */}

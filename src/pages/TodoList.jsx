@@ -51,7 +51,7 @@ function TodoList() {
             console.error(error);
           }
         })(),
-      2000
+      20000
     );
 
     // return () => {

@@ -1,3 +1,11 @@
+/**
+ * Component of each todo list
+ * @jenis {tipedata} nama
+ * @param {Object} props
+ * @param {string} props.title
+ * @param {string} props.content
+ * @returns {JSX.Element}
+ */
 function CardTodoList({ title, content }) {
   return (
     <article className="border-2 border-black border-solid p-1 cursor-pointer rounded-lg">

@@ -1,11 +1,13 @@
 import CardTodoList from "./CardTodoList";
 import Loader from "./Loader";
 
-// const todos = [
-//   { title: "Todo 1", content: "Lorem ipsum dolor sit amet." },
-//   { title: "Todo 2", content: "Lorem, ipsum dolor sit amet consectetur adipisicing." },
-// ];
-
+/**
+ * Component to show todo list
+ * @param {Object} props
+ * @param {import("./AddTodoList").todo[]} props.todos
+ * @param {boolean} props.isLoading
+ * @returns
+ */
 function ShowTodoList(props) {
   const { todos, isLoading } = props;
   return (
@@ -15,7 +17,7 @@ function ShowTodoList(props) {
         {/* {[<CardTodoList />, <CardTodoList />, <CardTodoList />, <CardTodoList />, <CardTodoList />, <CardTodoList />]} */}
         {!isLoading &&
           todos.map((todo, idx) => {
-            return <CardTodoList key={idx} title={todo.title} content={todo.content} />;
+            return <CardTodoList key={idx} content={todo.content} title={todo.title} />;
           })}
         {isLoading && <Loader />}
       </div>
