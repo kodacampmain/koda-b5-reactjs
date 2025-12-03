@@ -21,7 +21,7 @@ function Heading({ title }) {
     <>
       <header className="p-5 h-[15vh] bg-amber-200 text-2xl font-bold select-none flex justify-between">
         <h1 className="font-sans font-black">{title}</h1>
-        <nav className="flex justify-center items-center">
+        <nav className="flex justify-center items-center border-std p-5">
           <ul className="flex gap-2">
             <li>
               <Link to={"/"}>Home</Link>

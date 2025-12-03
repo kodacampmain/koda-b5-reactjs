@@ -1,13 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 @import "tailwindcss";
-.loader {
+
+@theme {
+  --animation-loading: loading 2s linear infinite;
+  --warna-asap: whitesmoke;
+  --color-asap: var(--warna-asap);
+  --color-primary: goldenrod;
+  --font-roboto: "Roboto", sans-serif;
+  --spacing-5: 10.5px;
+}
+
+@layer base {
+  header {
+    @apply font-roboto;
+  }
+}
+
+@utility border-std {
+  /* @apply border-2 border-solid border-asap; */
+  border: 2px solid;
+  @apply border-asap;
+}
+@utility loader {
+  /* grid-column: 11/13; */
   width: fit-content;
   font-weight: bold;
   font-family: sans-serif;
   font-size: 30px;
   padding-bottom: 8px;
-  color: blue;
-  background: linear-gradient(blue 0 0) 0 100%/0% 3px no-repeat;
-  animation: loading 2s linear infinite;
+  color: goldenrod;
+  background: linear-gradient(goldenrod 0 0) 0 100%/0% 3px no-repeat;
+  /* animation: loading 2s linear infinite; */
 }
 @keyframes loading {
   to {

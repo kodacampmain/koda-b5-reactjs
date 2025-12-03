@@ -11,7 +11,7 @@ import Loader from "./Loader";
 function ShowTodoList(props) {
   const { todos, isLoading } = props;
   return (
-    <section className="flex-1 p-5 border-2 border-solid border-black">
+    <section className="flex-1 p-5 border-2 border-solid border-primary">
       <h2 className="text-2xl font-bold mb-2">My Todo List</h2>
       <div className="grid grid-cols-5 gap-2">
         {/* {[<CardTodoList />, <CardTodoList />, <CardTodoList />, <CardTodoList />, <CardTodoList />, <CardTodoList />]} */}

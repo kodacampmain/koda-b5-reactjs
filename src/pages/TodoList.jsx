@@ -72,7 +72,7 @@ function TodoList() {
   return (
     <>
       <Heading title={"Todo App"} />
-      <main className="flex min-h-[85vh]">
+      <main className="flex min-h-[85vh] bg-asap text-primary p-[10px_2px] ">
         <ShowTodoList todos={todos} isLoading={isLoading} />
         <AddTodoList changeTodos={setTodos} />
       </main>
