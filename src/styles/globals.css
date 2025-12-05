@@ -1,18 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap"); */
 @import "tailwindcss";
-
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/Roboto-VariableFont_wdth,wght.ttf") format("truetype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Soul";
+  src: url("../assets/MySoul-Regular.ttf") format("truetype");
+  font-display: swap;
+}
 @theme {
   --animation-loading: loading 2s linear infinite;
   --warna-asap: whitesmoke;
   --color-asap: var(--warna-asap);
   --color-primary: goldenrod;
-  --font-roboto: "Roboto", sans-serif;
+  --font-roboto: "Roboto", Arial;
+  --font-soul: "Soul", sans-serif;
   --spacing-5: 10.5px;
 }
 
 @layer base {
-  header {
+  * {
     @apply font-roboto;
+    /* font-display: swap; */
+  }
+  h1 {
+    @apply font-soul;
   }
 }
 

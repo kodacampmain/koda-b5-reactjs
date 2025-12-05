@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 
+import LogoReact from "../assets/react.svg";
+
 /**
  * Header Component
  * @param {Object} props
@@ -20,7 +22,10 @@ function Heading({ title }) {
   return (
     <>
       <header className="p-5 h-[15vh] bg-amber-200 text-2xl font-bold select-none flex justify-between">
-        <h1 className="font-sans font-black">{title}</h1>
+        <div className="flex gap-2">
+          <img src={LogoReact} alt="logo-react" width={36} height={32} />
+          <h1 className="font-black self-center">{title}</h1>
+        </div>
         <nav className="flex justify-center items-center border-std p-5">
           <ul className="flex gap-2">
             <li>
