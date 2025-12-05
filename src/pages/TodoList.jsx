@@ -29,10 +29,11 @@ function TodoList() {
     //   })
     //   .catch((err) => console.error(err));
     setIsLoading(true);
+    console.log(parseInt(import.meta.env.VITE_NUM_1) + parseInt(import.meta.env.VITE_NUM_2));
     setTimeout(
       () =>
         (async () => {
-          const url = "https://jsonplaceholder.typicode.com/todos";
+          const url = `${import.meta.env.VITE_API}/todos`;
           try {
             // aktifkan loading state
             const response = await fetch(url);
@@ -51,7 +52,7 @@ function TodoList() {
             console.error(error);
           }
         })(),
-      20000
+      2000
     );
 
     // return () => {
