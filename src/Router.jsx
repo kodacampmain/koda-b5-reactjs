@@ -31,13 +31,40 @@ function Router() {
   );
 }
 
-export default AppRouter;
+export default Router;
 
 function Home() {
   return <div>Home</div>;
 }
+import { useNavigate } from "react-router";
 function Login() {
-  return <div>Login</div>;
+  const navigate = useNavigate();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const validCreds = {
+      email: "mail@mail.com",
+      password: "12345qqq",
+    };
+    if (validCreds.email !== e.target.email.value) {
+      return;
+    }
+    if (validCreds.password !== e.target.password.value) {
+      return;
+    }
+    navigate("/app/v1");
+  };
+  return (
+    <>
+      <div>Login</div>
+      <form noValidate onSubmit={submitHandler}>
+        <input type="email" name="email" placeholder="Input Email" />
+        <input type="password" name="password" placeholder="Input Password" />
+        <button type="submit" className="border-std border-black cursor-pointer">
+          Login
+        </button>
+      </form>
+    </>
+  );
 }
 function Register() {
   return <div>Register</div>;
@@ -45,24 +72,60 @@ function Register() {
 function ForgotPass() {
   return <div>ForgotPass</div>;
 }
+import { Link } from "react-router";
 function ProductList() {
+  const products = [
+    {
+      id: 1,
+      slug: "sikat-gigi",
+      title: "Sikat Gigi",
+    },
+    {
+      id: 10,
+      slug: "sabun-mandi",
+      title: "Sabun Mandi",
+    },
+    {
+      id: 100,
+      slug: "kanebo-motor",
+      title: "Kanebo Motor",
+    },
+  ];
   return (
     <>
       <div>ProductList</div>
+      <section>
+        {products.map(({ id, slug, title }) => {
+          return (
+            <Link key={id} to={`/app/v1/products/${id}/${slug}`}>
+              <div>{title}</div>
+            </Link>
+          );
+        })}
+      </section>
       {/* <Outlet /> */}
     </>
   );
 }
+import { useParams } from "react-router";
 function ProductDetail() {
+  const { id, slug } = useParams();
   return (
     <>
-      <div>ProductDetail</div>
+      <div>
+        ProductDetail dengan id: {id} dan slug: {slug}
+      </div>
       {/* <Outlet /> */}
     </>
   );
 }
 function ProductOrder() {
-  return <div>ProductOrder</div>;
+  const { id, slug } = useParams();
+  return (
+    <div>
+      ProductOrder dgn id: {id} dan slug: {slug}
+    </div>
+  );
 }
 function UserProfile() {
   return <div>UserProfile</div>;
@@ -133,8 +196,8 @@ function UserLayout() {
  * /user => profile
  * /user/order => history order
  * /products => list product
- * /products/detail => detail product
- * /products/detail/order => order product
+ * /products/:id => detail product dgn id yang ada di param
+ * /products/:id/order => order product dgn id yang ada di param
  *
  * auth punya layout sendiri (no header, only footer)
  * product punya layout berupa header + footer
@@ -152,9 +215,11 @@ function AppRouter() {
           <Route index element={<Home />} />
           <Route path="products">
             <Route index element={<ProductList />} />
-            <Route path="detail">
-              <Route index element={<ProductDetail />} />
-              <Route path="order" element={<ProductOrder />} />
+            <Route path=":id">
+              <Route path=":slug">
+                <Route index element={<ProductDetail />} />
+                <Route path="order" element={<ProductOrder />} />
+              </Route>
             </Route>
           </Route>
         </Route>
