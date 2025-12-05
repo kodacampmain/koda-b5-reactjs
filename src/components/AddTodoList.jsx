@@ -18,7 +18,13 @@ function AddTodoList(props) {
   const [form, setForm] = useState({
     title: "",
     content: "",
+    // point: 0,
     // isCompleted: false,
+  });
+  const [error, setError] = useState({
+    title: false,
+    content: false,
+    // point: ""
   });
   const submitHandler = (event) => {
     event.preventDefault();
@@ -44,6 +50,19 @@ function AddTodoList(props) {
     });
   };
   const onChangeHandler = (e) => {
+    // validasi
+    // 1. Judul minimum 8 karakter
+    if (e.target.id === "title") {
+      if (e.target.value.length < 8) {
+        setError({
+          [e.target.id]: true,
+        });
+      } else {
+        setError({
+          [e.target.id]: false,
+        });
+      }
+    }
     setForm((form) => {
       return { ...form, [e.target.id]: e.target.value };
     });
@@ -62,6 +81,7 @@ function AddTodoList(props) {
             onChange={onChangeHandler}
             className="border-2 border-solid border-black p-1 w-full"
           />
+          <p className="font-bold text-red-600 min-h-12">{error.title && "Judul minimum 8 karakter"}</p>
         </div>
         <div>
           <label htmlFor="content">Content</label>
