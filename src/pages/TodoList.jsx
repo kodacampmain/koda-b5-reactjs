@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 
 import AddTodoList from "../components/AddTodoList";
 import ShowTodoList from "../components/ShowTodoList";
@@ -6,69 +6,69 @@ import Heading from "../components/Heading";
 import { themeContext } from "../contexts/theme/themeContext";
 
 function TodoList() {
-  const [todos, setTodos] = useState([]);
+  // const [todos, setTodos] = useState([]);
   // const [, setCounter] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const { theme } = useContext(themeContext);
   useEffect(() => {
     document.title = "My Judul";
   }, []);
-  useEffect(() => {
-    // const url = "https://jsonplaceholder.typicode.com/todos";
-    // fetch(url)
-    //   .then((res) => {
-    //     if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     const newTodos = data.slice(0, 7).map((item) => {
-    //       return {
-    //         title: `Todo ${item.id}`,
-    //         content: item.title,
-    //       };
-    //     });
-    //     setTodos(newTodos);
-    //   })
-    //   .catch((err) => console.error(err));
-    setIsLoading(true);
-    console.log(
-      parseInt(import.meta.env.VITE_NUM_1) +
-        parseInt(import.meta.env.VITE_NUM_2),
-    );
-    setTimeout(
-      () =>
-        (async () => {
-          const url = `${import.meta.env.VITE_API}/todos`;
-          try {
-            // aktifkan loading state
-            const response = await fetch(url);
-            if (!response.ok)
-              throw new Error(`${response.status}: ${response.statusText}`);
-            const data = await response.json();
-            const newTodos = data.slice(0, 7).map((item) => {
-              return {
-                title: `Todo ${item.id}`,
-                content: item.title,
-              };
-            });
-            // non-aktifkan loading state
-            setIsLoading(false);
-            setTodos(newTodos);
-          } catch (error) {
-            console.error(error);
-          }
-        })(),
-      2000,
-    );
+  // useEffect(() => {
+  //   // const url = "https://jsonplaceholder.typicode.com/todos";
+  //   // fetch(url)
+  //   //   .then((res) => {
+  //   //     if (!res.ok) throw new Error(`${res.status}: ${res.statusText}`);
+  //   //     return res.json();
+  //   //   })
+  //   //   .then((data) => {
+  //   //     const newTodos = data.slice(0, 7).map((item) => {
+  //   //       return {
+  //   //         title: `Todo ${item.id}`,
+  //   //         content: item.title,
+  //   //       };
+  //   //     });
+  //   //     setTodos(newTodos);
+  //   //   })
+  //   //   .catch((err) => console.error(err));
+  //   setIsLoading(true);
+  //   console.log(
+  //     parseInt(import.meta.env.VITE_NUM_1) +
+  //       parseInt(import.meta.env.VITE_NUM_2),
+  //   );
+  //   setTimeout(
+  //     () =>
+  //       (async () => {
+  //         const url = `${import.meta.env.VITE_API}/todos`;
+  //         try {
+  //           // aktifkan loading state
+  //           const response = await fetch(url);
+  //           if (!response.ok)
+  //             throw new Error(`${response.status}: ${response.statusText}`);
+  //           const data = await response.json();
+  //           const newTodos = data.slice(0, 7).map((item) => {
+  //             return {
+  //               title: `Todo ${item.id}`,
+  //               content: item.title,
+  //             };
+  //           });
+  //           // non-aktifkan loading state
+  //           setIsLoading(false);
+  //           setTodos(newTodos);
+  //         } catch (error) {
+  //           console.error(error);
+  //         }
+  //       })(),
+  //     2000,
+  //   );
 
-    // return () => {
-    //   removeEventListener();
-    //   removeEventListener();
-    //   removeEventListener();
-    //   removeEventListener();
-    //   removeEventListener();
-    // };
-  }, []);
+  //   // return () => {
+  //   //   removeEventListener();
+  //   //   removeEventListener();
+  //   //   removeEventListener();
+  //   //   removeEventListener();
+  //   //   removeEventListener();
+  //   // };
+  // }, []);
   // useEffect(() => {
   //   console.log(counter);
   // }, [counter]);
@@ -80,8 +80,10 @@ function TodoList() {
     <>
       <Heading title={"Todo App"} />
       <main className={`${theme.style} flex min-h-[85vh] p-[10px_2px]`}>
-        <ShowTodoList todos={todos} isLoading={isLoading} />
-        <AddTodoList changeTodos={setTodos} />
+        {/* <ShowTodoList todos={todos} isLoading={isLoading} /> */}
+        <ShowTodoList />
+        {/* <AddTodoList changeTodos={setTodos} /> */}
+        <AddTodoList />
       </main>
     </>
   );

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { todoContext } from "../contexts/todos/todoContext";
 /**
  * Todo Object
  * @typedef {Object} todo
@@ -11,8 +12,9 @@ import { useState } from "react";
  * @param {import("react").Dispatch<import("react").SetStateAction<todo[]>>} props.changeTodos
  * @returns {JSX.Element}
  */
-function AddTodoList(props) {
-  const { changeTodos } = props;
+function AddTodoList() {
+  // const { changeTodos } = props;
+  const { state, dispatch } = useContext(todoContext);
   // const [title, setTitle] = useState("");
   // const [content, setContent] = useState("");
   const [form, setForm] = useState({
@@ -28,7 +30,10 @@ function AddTodoList(props) {
   });
   const submitHandler = (event) => {
     event.preventDefault();
-    const newTodo = {};
+    const newTodo = {
+      id: state.lastId + 1,
+      isCompleted: false,
+    };
     // validasi tidak boleh kosong title
     // jika error maka stop
     // Object.assign(newTodo, { title: event.target["todo-title"].value });
@@ -37,8 +42,12 @@ function AddTodoList(props) {
     // jika error maka stop
     // Object.assign(newTodo, { content: event.target["todo-content"].value });
     Object.assign(newTodo, { content: form.content });
-    changeTodos((todos) => {
-      return [...todos, newTodo];
+    // changeTodos((todos) => {
+    //   return [...todos, newTodo];
+    // });
+    dispatch({
+      type: "ADD_TODOS",
+      payload: newTodo,
     });
     // event.target["todo-title"].value = "";
     // setTitle("");
@@ -68,9 +77,9 @@ function AddTodoList(props) {
     });
   };
   return (
-    <aside className="w-[20vw] p-5 border-2 border-solid border-black">
+    <aside className="w-[20vw] border-2 border-solid border-black p-5">
       <form noValidate onSubmit={submitHandler}>
-        <header className="text-center font-bold text-xl">Add Todo</header>
+        <header className="text-center text-xl font-bold">Add Todo</header>
         <div>
           <label htmlFor="title">Title</label>
           <input
@@ -79,9 +88,11 @@ function AddTodoList(props) {
             id="title"
             value={form.title}
             onChange={onChangeHandler}
-            className="border-2 border-solid border-black p-1 w-full"
+            className="w-full border-2 border-solid border-black p-1"
           />
-          <p className="font-bold text-red-600 min-h-12">{error.title && "Judul minimum 8 karakter"}</p>
+          <p className="min-h-12 font-bold text-red-600">
+            {error.title && "Judul minimum 8 karakter"}
+          </p>
         </div>
         <div>
           <label htmlFor="content">Content</label>
@@ -90,11 +101,14 @@ function AddTodoList(props) {
             id="content"
             value={form.content}
             onChange={onChangeHandler}
-            className="border-2 border-solid border-black p-1 w-full h-[200px] resize-none"
+            className="h-[200px] w-full resize-none border-2 border-solid border-black p-1"
           ></textarea>
         </div>
         <div className="flex justify-end">
-          <button type="submit" className="border-2 border-black border-solid p-1 cursor-pointer select-none">
+          <button
+            type="submit"
+            className="cursor-pointer border-2 border-solid border-black p-1 select-none"
+          >
             Submit
           </button>
         </div>

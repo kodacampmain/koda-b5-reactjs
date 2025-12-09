@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CardTodoList from "./CardTodoList";
 import Loader from "./Loader";
 
 import { useSearchParams } from "react-router";
+import { todoContext } from "../contexts/todos/todoContext";
 /**
  * Component to show todo list
  * @param {Object} props
@@ -10,8 +11,9 @@ import { useSearchParams } from "react-router";
  * @param {boolean} props.isLoading
  * @returns
  */
-function ShowTodoList(props) {
-  const { todos, isLoading } = props;
+function ShowTodoList() {
+  // const { todos, isLoading } = props;
+  const { state } = useContext(todoContext);
   const [searchParam, setSearchParam] = useSearchParams();
   // const navigate = useNavigate()
   // const [filteredData, setFilteredData] = useState([]);
@@ -39,8 +41,8 @@ function ShowTodoList(props) {
     })();
   }, [searchParam]);
   return (
-    <section className="flex-1 p-5 border-2 border-solid border-primary">
-      <h2 className="text-2xl font-bold mb-2">My Todo List</h2>
+    <section className="border-primary flex-1 border-2 border-solid p-5">
+      <h2 className="mb-2 text-2xl font-bold">My Todo List</h2>
       <form
         className="my-2 flex gap-1"
         onSubmit={(e) => {
@@ -49,13 +51,16 @@ function ShowTodoList(props) {
         }}
       >
         <input
-          className="border-std border-black p-1 rounded-md text-black"
+          className="border-std rounded-md border-black p-1 text-black"
           type="text"
           name="search"
           placeholder="Type to search content"
           value={query.search}
           onChange={(e) => {
-            setQuery((query) => ({ ...query, [e.target.name]: e.target.value }));
+            setQuery((query) => ({
+              ...query,
+              [e.target.name]: e.target.value,
+            }));
           }}
           // onKeyDown={(e) => {
           //   if (e.key !== "Enter") return;
@@ -66,7 +71,10 @@ function ShowTodoList(props) {
           name="option"
           value={query.option}
           onChange={(e) => {
-            setQuery((query) => ({ ...query, [e.target.name]: e.target.value }));
+            setQuery((query) => ({
+              ...query,
+              [e.target.name]: e.target.value,
+            }));
           }}
         >
           <option value="1">Satu</option>
@@ -88,23 +96,34 @@ function ShowTodoList(props) {
       <p>{searchParam.toString()}</p>
       <div className="grid grid-cols-5 gap-2">
         {/* {[<CardTodoList />, <CardTodoList />, <CardTodoList />, <CardTodoList />, <CardTodoList />, <CardTodoList />]} */}
-        {!isLoading &&
+        {
           // !searchParam.size &&
-          todos
+          state.todos
             .filter((todo) => {
               if (!searchParam.get("search")) {
                 return true;
               }
-              return todo.content.includes(searchParam.get("search"));
+              return todo.content
+                .toLowerCase()
+                .includes(searchParam.get("search").toLowerCase());
             })
-            .map((todo, idx) => {
-              return <CardTodoList key={idx} content={todo.content} title={todo.title} />;
-            })}
+            .map((todo) => {
+              return (
+                <CardTodoList
+                  key={todo.id}
+                  content={todo.content}
+                  title={todo.title}
+                  isCompleted={todo.isCompleted}
+                  itemId={todo.id}
+                />
+              );
+            })
+        }
         {/* {!!searchParam.size &&
           filteredData.map((todo, idx) => {
             return <CardTodoList key={idx} content={todo.content} title={todo.title} />;
           })} */}
-        {isLoading && <Loader />}
+        {/* {isLoading && <Loader />} */}
       </div>
     </section>
   );

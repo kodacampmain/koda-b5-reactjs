@@ -8,13 +8,16 @@ import { BrowserRouter } from "react-router";
 // import NotFound from "./pages/NotFound";
 import Router from "./Router";
 import ThemeProvider from "./contexts/theme/ThemeProvider";
+import TodoProvider from "./contexts/todos/TodoProvider";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider>
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <TodoProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </TodoProvider>
     </ThemeProvider>
   </StrictMode>,
 );
