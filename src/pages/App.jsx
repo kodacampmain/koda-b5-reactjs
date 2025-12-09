@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import Heading from "../components/Heading";
 import useLocalStorage from "../hooks/useLocalStorage";
+import useInput from "../hooks/useInput";
 // import bgTebing from "../assets/tebing.jpg";
 
 function App() {
@@ -18,6 +19,14 @@ function App() {
   // };
   const [activeUser, setActiveUser] = useLocalStorage("koda5-user", {
     user: null,
+  });
+  const emailInput = useInput("", {
+    required: true,
+    minLength: 5,
+  });
+  const pwdInput = useInput("", {
+    required: true,
+    minLength: 8,
   });
   const navigate = useNavigate();
   useEffect(() => {
@@ -37,9 +46,13 @@ function App() {
           onSubmit={(e) => {
             e.preventDefault();
             // console.log("submit");
-            setActiveUser((activeUser) => {
-              return { ...activeUser, user: e.target.email.value };
-            });
+            // setActiveUser((activeUser) => {
+            //   return { ...activeUser, user: e.target.email.value };
+            // });
+            console.log(emailInput.value);
+            console.log(pwdInput.value);
+            emailInput.reset();
+            pwdInput.reset();
           }}
         >
           <label htmlFor="email">Email</label>
@@ -47,17 +60,23 @@ function App() {
             type="email"
             name="email"
             id="email"
+            value={emailInput.value}
+            onChange={emailInput.onChange}
             placeholder="Input your Email"
             className="border-std font-roboto rounded-sm border-black p-1 leading-none"
           />
+          {!emailInput.isValid && <p className="error">{emailInput.error}</p>}
           <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             id="password"
+            value={pwdInput.value}
+            onChange={pwdInput.onChange}
             placeholder="Input your Password"
             className="border-std font-roboto rounded-sm border-black p-1 leading-none"
           />
+          {!pwdInput.isValid && <p className="error">{pwdInput.error}</p>}
           <div className="flex items-start justify-end py-2">
             <button type="submit" className="">
               LOGIN

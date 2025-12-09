@@ -33,7 +33,11 @@
     @apply rounded-md bg-gray-300 p-1 cursor-pointer;
   }
 }
-
+@layer components {
+  p.error {
+    @apply text-red-400 text-sm italic
+  }
+}
 @utility border-std {
   /* @apply border-2 border-solid border-asap; */
   border: 2px solid;
