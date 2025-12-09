@@ -22,8 +22,8 @@ function ShowTodoList(props) {
   useEffect(() => {
     (() => {
       // sinkronisasi
-      setQuery(() => {
-        const newQuery = {};
+      setQuery((query) => {
+        const newQuery = query;
         searchParam.forEach((value, key) => {
           Object.assign(newQuery, { [key]: value });
         });
