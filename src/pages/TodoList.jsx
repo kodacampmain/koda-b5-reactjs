@@ -29,7 +29,10 @@ function TodoList() {
     //   })
     //   .catch((err) => console.error(err));
     setIsLoading(true);
-    console.log(parseInt(import.meta.env.VITE_NUM_1) + parseInt(import.meta.env.VITE_NUM_2));
+    console.log(
+      parseInt(import.meta.env.VITE_NUM_1) +
+        parseInt(import.meta.env.VITE_NUM_2),
+    );
     setTimeout(
       () =>
         (async () => {
@@ -37,7 +40,8 @@ function TodoList() {
           try {
             // aktifkan loading state
             const response = await fetch(url);
-            if (!response.ok) throw new Error(`${response.status}: ${response.statusText}`);
+            if (!response.ok)
+              throw new Error(`${response.status}: ${response.statusText}`);
             const data = await response.json();
             const newTodos = data.slice(0, 7).map((item) => {
               return {
@@ -52,7 +56,7 @@ function TodoList() {
             console.error(error);
           }
         })(),
-      2000
+      2000,
     );
 
     // return () => {
@@ -73,7 +77,7 @@ function TodoList() {
   return (
     <>
       <Heading title={"Todo App"} />
-      <main className="flex min-h-[85vh] bg-asap text-primary p-[10px_2px] ">
+      <main className="bg-asap text-primary flex min-h-[85vh] p-[10px_2px]">
         <ShowTodoList todos={todos} isLoading={isLoading} />
         <AddTodoList changeTodos={setTodos} />
       </main>

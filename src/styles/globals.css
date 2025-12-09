@@ -28,6 +28,10 @@
   h1 {
     @apply font-soul;
   }
+  button {
+    border: 2px solid black;
+    @apply rounded-md bg-gray-300 p-1 cursor-pointer;
+  }
 }
 
 @utility border-std {
