@@ -7,11 +7,14 @@ import { BrowserRouter } from "react-router";
 // import TodoList from "./pages/TodoList";
 // import NotFound from "./pages/NotFound";
 import Router from "./Router";
+import ThemeProvider from "./contexts/theme/ThemeProvider";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
-  </StrictMode>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </ThemeProvider>
+  </StrictMode>,
 );

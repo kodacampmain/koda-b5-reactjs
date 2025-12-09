@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router";
 
 import LogoReact from "../assets/react.svg";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { useContext } from "react";
+import { themeContext } from "../contexts/theme/themeContext";
 
 /**
  * Header Component
@@ -14,6 +16,7 @@ function Heading({ title }) {
     user: null,
   });
   const navigate = useNavigate();
+  const { theme } = useContext(themeContext);
   // const { title } = props;
   // if (!name) {
   //   onError();
@@ -26,7 +29,9 @@ function Heading({ title }) {
   // func(name);
   return (
     <>
-      <header className="flex h-[15vh] justify-between bg-amber-200 p-5 text-2xl font-bold select-none">
+      <header
+        className={`${theme.style} flex h-[15vh] justify-between p-5 text-2xl font-bold select-none`}
+      >
         <div className="flex gap-2">
           <img src={LogoReact} alt="logo-react" width={36} height={32} />
           <h1 className="self-center font-black">{title}</h1>

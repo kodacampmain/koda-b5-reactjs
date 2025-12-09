@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { themeContext as tc } from "../contexts/theme/themeContext";
+
 /**
  * Component of each todo list
  * @jenis {tipedata} nama
@@ -7,9 +10,13 @@
  * @returns {JSX.Element}
  */
 function CardTodoList({ title, content }) {
+  const theme = useContext(tc);
+  console.log(theme);
   return (
-    <article className="border-2 border-black border-solid p-1 cursor-pointer rounded-lg">
-      <h3 className="text-xl font-bold border-b-2 border-black border-solid">{title || "Judul"}</h3>
+    <article className="cursor-pointer rounded-lg border-2 border-solid border-black p-1">
+      <h3 className="border-b-2 border-solid border-black text-xl font-bold">
+        {title || "Judul"}
+      </h3>
       <p className="font-roboto">{content || "Lorem ipsum dolor sit amet."}</p>
     </article>
   );

@@ -1,11 +1,12 @@
 // import { Component } from "react";
 // import "./App.css";
 
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
 import Heading from "../components/Heading";
 import useLocalStorage from "../hooks/useLocalStorage";
 import useInput from "../hooks/useInput";
+import { themeContext } from "../contexts/theme/themeContext";
 // import bgTebing from "../assets/tebing.jpg";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
   // const noName = () => {
   //   console.log("gak ada nama oi");
   // };
-  const [activeUser, setActiveUser] = useLocalStorage("koda5-user", {
+  const [activeUser] = useLocalStorage("koda5-user", {
     user: null,
   });
   const emailInput = useInput("", {
@@ -29,6 +30,8 @@ function App() {
     minLength: 8,
   });
   const navigate = useNavigate();
+  const tema = useContext(themeContext);
+  // console.log(tema);
   useEffect(() => {
     if (activeUser.user) {
       navigate("/todolist", { replace: true });
@@ -41,7 +44,7 @@ function App() {
         className={`relative flex min-h-screen items-center justify-center bg-[url('/src/assets/tebing.jpg')] bg-cover bg-center after:absolute after:inset-0 after:z-10 after:bg-black/20`}
       >
         <form
-          className="border-std z-20 grid h-[70vh] w-2/3 grid-rows-[auto_1fr_auto_1fr_2fr] gap-1 rounded-md border-black bg-white p-2"
+          className={`border-std z-20 grid h-[70vh] w-2/3 grid-rows-[auto_1fr_auto_1fr_2fr] gap-1 rounded-md border-black p-2 ${tema.theme.style}`}
           noValidate
           onSubmit={(e) => {
             e.preventDefault();
@@ -78,6 +81,9 @@ function App() {
           />
           {!pwdInput.isValid && <p className="error">{pwdInput.error}</p>}
           <div className="flex items-start justify-end py-2">
+            <button type="button" onClick={tema.toggleTheme}>
+              {tema.theme.mode === "dark" ? "⏾" : "☀︎"}
+            </button>
             <button type="submit" className="">
               LOGIN
             </button>

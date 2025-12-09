@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import AddTodoList from "../components/AddTodoList";
 import ShowTodoList from "../components/ShowTodoList";
 import Heading from "../components/Heading";
+import { themeContext } from "../contexts/theme/themeContext";
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
   // const [, setCounter] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const { theme } = useContext(themeContext);
   useEffect(() => {
     document.title = "My Judul";
   }, []);
@@ -77,7 +79,7 @@ function TodoList() {
   return (
     <>
       <Heading title={"Todo App"} />
-      <main className="bg-asap text-primary flex min-h-[85vh] p-[10px_2px]">
+      <main className={`${theme.style} flex min-h-[85vh] p-[10px_2px]`}>
         <ShowTodoList todos={todos} isLoading={isLoading} />
         <AddTodoList changeTodos={setTodos} />
       </main>

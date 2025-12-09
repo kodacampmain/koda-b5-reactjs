@@ -18,6 +18,8 @@
   --font-roboto: "Roboto", Arial;
   --font-soul: "Soul", sans-serif;
   --spacing-5: 10.5px;
+  --color-dark: #181818;
+  --color-light: #f3dede;
 }
 
 @layer base {
@@ -30,12 +32,12 @@
   }
   button {
     border: 2px solid black;
-    @apply rounded-md bg-gray-300 p-1 cursor-pointer;
+    @apply cursor-pointer rounded-md bg-gray-300 p-1;
   }
 }
 @layer components {
   p.error {
-    @apply text-red-400 text-sm italic
+    @apply text-sm text-red-400 italic;
   }
 }
 @utility border-std {
