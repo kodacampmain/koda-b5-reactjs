@@ -4,8 +4,12 @@
  * @param {string} props.content
  * @returns {JSX.Element}
  */
-function Loader() {
-  return <div className={`loader animate-(--animation-loading) before:content-["Loading..."]`}></div>;
+function Loader(props) {
+  return (
+    <div
+      className={`loader animate-(--animation-loading) before:content-["Loading..."] ${props.className}`}
+    ></div>
+  );
 }
 
 export default Loader;

@@ -4,6 +4,8 @@ import App from "./pages/App";
 import TodoList from "./pages/TodoList";
 import TodoListRedux from "./pages/TodoListRedux";
 import NotFound from "./pages/NotFound";
+import Pokemon from "./pages/Pokemon";
+
 import MainLayout from "./layouts/MainLayout";
 
 function Router() {
@@ -23,12 +25,14 @@ function Router() {
           <Route index element={<TodoList />} />
           <Route path="redux" element={<TodoListRedux />} />
         </Route>
+        <Route path="pokemon" element={<Pokemon />} />
       </Route>
       {/* prefix routes */}
-      <Route path="/app/v2">
-        <Route index element={<App />} /> {/* index routes */}
+      {/* <Route path="/app/v2"> */}
+      {/* index routes */}
+      {/* <Route index element={<App />} />
         <Route path="todolist" element={<TodoList />} />
-      </Route>
+      </Route> */}
       {/* Rute Catch All */}
       <Route path="*" element={<NotFound />} />
     </Routes>
