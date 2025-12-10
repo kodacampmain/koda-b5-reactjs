@@ -3,15 +3,11 @@ import { todoContext as TodoContext } from "./todoContext";
 
 function TodoProvider({ children }) {
   const initialState = {
-    todos: [
-      {
-        title: "Todo 1",
-        content: "Contexts sssssss sssssssssssssss",
-        id: 1,
-        isCompleted: false,
-      },
-    ],
+    todos: [],
     lastId: 1,
+    // isLoading: false,
+    // isSuccess: false,
+    // isError: false,
   };
   // action akan di dispatch dari komponen, action berbentuk object
   // biasanya setiap action akan diberikan properti type untuk identifikasinya

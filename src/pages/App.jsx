@@ -52,6 +52,9 @@ function App() {
             // setActiveUser((activeUser) => {
             //   return { ...activeUser, user: e.target.email.value };
             // });
+            if (!emailInput.isValid || !pwdInput.isValid) {
+              return;
+            }
             console.log(emailInput.value);
             console.log(pwdInput.value);
             emailInput.reset();
@@ -68,7 +71,11 @@ function App() {
             placeholder="Input your Email"
             className="border-std font-roboto rounded-sm border-black p-1 leading-none"
           />
-          {!emailInput.isValid && <p className="error">{emailInput.error}</p>}
+          {emailInput.isValid ? (
+            <></>
+          ) : (
+            <p className="error">{emailInput.error}</p>
+          )}
           <label htmlFor="password">Password</label>
           <input
             type="password"
