@@ -2,6 +2,7 @@ import { Routes, Route, Outlet } from "react-router";
 
 import App from "./pages/App";
 import TodoList from "./pages/TodoList";
+import TodoListRedux from "./pages/TodoListRedux";
 import NotFound from "./pages/NotFound";
 import MainLayout from "./layouts/MainLayout";
 
@@ -18,7 +19,10 @@ function Router() {
       {/* nested routes */}
       <Route path="/" element={<MainLayout />}>
         <Route index element={<App />} /> {/* index routes */}
-        <Route path="todolist" element={<TodoList />} />
+        <Route path="todolist">
+          <Route index element={<TodoList />} />
+          <Route path="redux" element={<TodoListRedux />} />
+        </Route>
       </Route>
       {/* prefix routes */}
       <Route path="/app/v2">
@@ -59,7 +63,10 @@ function Login() {
       <form noValidate onSubmit={submitHandler}>
         <input type="email" name="email" placeholder="Input Email" />
         <input type="password" name="password" placeholder="Input Password" />
-        <button type="submit" className="border-std border-black cursor-pointer">
+        <button
+          type="submit"
+          className="border-std cursor-pointer border-black"
+        >
           Login
         </button>
       </form>
