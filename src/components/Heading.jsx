@@ -36,7 +36,7 @@ function Heading({ title }) {
           <img src={LogoReact} alt="logo-react" width={36} height={32} />
           <h1 className="self-center font-black">{title}</h1>
         </div>
-        <nav className="flex items-center justify-center p-5">
+        <nav className="hidden p-5 md:flex md:items-center md:justify-center">
           <ul className="[&_li]:border-std flex gap-2">
             <li>
               <Link to={"/"}>Home</Link>
@@ -59,6 +59,7 @@ function Heading({ title }) {
             )}
           </ul>
         </nav>
+        <div className="flex items-center justify-center md:hidden">☰</div>
       </header>
     </>
   );

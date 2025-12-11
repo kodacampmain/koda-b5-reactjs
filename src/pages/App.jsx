@@ -39,12 +39,12 @@ function App() {
   }, [activeUser]);
   return (
     <>
-      <Heading title="Wibi" />
+      {/* <Heading title="Wibi" /> */}
       <main
         className={`relative flex min-h-screen items-center justify-center bg-[url('/src/assets/tebing.jpg')] bg-cover bg-center after:absolute after:inset-0 after:z-10 after:bg-black/20`}
       >
         <form
-          className={`border-std z-20 grid h-[70vh] w-2/3 grid-rows-[auto_1fr_auto_1fr_2fr] gap-1 rounded-md border-black p-2 ${tema.theme.style}`}
+          className={`border-std z-20 grid h-[70vh] w-9/10 grid-rows-[auto_1fr_auto_1fr_2fr] gap-1 rounded-md border-black p-2 md:w-2/3 ${tema.theme.style}`}
           noValidate
           onSubmit={(e) => {
             e.preventDefault();
@@ -87,7 +87,7 @@ function App() {
             className="border-std font-roboto rounded-sm border-black p-1 leading-none"
           />
           {!pwdInput.isValid && <p className="error">{pwdInput.error}</p>}
-          <div className="flex items-start justify-end py-2">
+          <div className="flex items-start justify-end gap-2 py-2">
             <button type="button" onClick={tema.toggleTheme}>
               {tema.theme.mode === "dark" ? "⏾" : "☀︎"}
             </button>
