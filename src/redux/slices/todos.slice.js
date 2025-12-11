@@ -21,8 +21,27 @@ const todoSLice = createSlice({
       });
       prevState.todos = newTodos;
     },
-    editTodos: (prevState, action) => {},
-    toggleTodos: (prevState, action) => {},
+    editTodos: (prevState, action) => {
+      const newTodos = prevState.todos.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return action.payload;
+        }
+        return todo;
+      });
+      prevState.todos = newTodos;
+    },
+    toggleTodos: (prevState, action) => {
+      const newTodos = prevState.todos.map((todo) => {
+        if (todo.id === action.payload) {
+          return {
+            ...todo,
+            isCompleted: !todo.isCompleted,
+          };
+        }
+        return todo;
+      });
+      prevState.todos = newTodos;
+    },
   },
 });
 
